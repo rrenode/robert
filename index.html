@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robert J Renode IV</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Favicons
+    ================================================== -->
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+  <!-- Stylesheet
+    ================================================== -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body>
+
+  <canvas id="bg"></canvas>
+  <main>
+    <div class="command">
+      <p>
+        <span class="shell-prompt">robert@renode:~$</span>
+        <span>whoami</span>
+      </p>
+      <div class="command-output">
+        <h1>Robert J Renode IV</h1>
+        <h2>&emsp;&emsp;|-> Software Engineer</h2>
+        <h2>&emsp;&emsp;|-> Explorer</h2>
+        <h2>&emsp;&emsp;|-> Teacher</h2>
+      </div>
+    </div>
+    <div class="command">
+      <p>
+        <span class="shell-prompt">robert@renode:~$</span>
+        <span>pwd</span>
+      </p>
+      <div class="command-output">
+        <p>/home/robert</p>
+      </div>
+    </div>
+    <div class="command">
+      <p>
+        <span class="shell-prompt">robert@renode:~$</span> ls
+      <div class="command-output">
+        <span>|- <a href="https://google.com">resume.pdf</a></span>
+        </p>
+      </div>
+    </div>
+    <div class="command">
+      <p>
+        <span class="shell-prompt">robert@renode:~$</span> <span class="cursor">█</span>
+      <div class="command-output">
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      draw();
+    }
+
+    function draw() {
+      ctx.fillStyle = "#0b0c14";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const DOT_SIZE = 1.5;
+      const SPACING = 18;
+      const JITTER = 3;
+
+      // Bright and dark regions
+      const fields = [
+        { x: 0.25, y: 0.30, r: 0.35, s: 0.10 }, // brighten
+        { x: 0.70, y: 0.45, r: 0.25, s: -0.08 }, // darken
+        { x: 0.55, y: 0.75, r: 0.30, s: 0.06 }, // brighten
+        { x: 0.85, y: 0.20, r: 0.20, s: -0.05 }, // darken
+      ];
+
+      for (let gy = 0; gy <= canvas.height; gy += SPACING) {
+        for (let gx = 0; gx <= canvas.width; gx += SPACING) {
+
+          const x = gx + (Math.random() * 2 - 1) * JITTER;
+          const y = gy + (Math.random() * 2 - 1) * JITTER;
+
+          let alpha = 0.04 + Math.random() * 0.04;
+
+          // Apply all nebula fields
+          for (const f of fields) {
+            const cx = f.x * canvas.width;
+            const cy = f.y * canvas.height;
+            const r = f.r * Math.min(canvas.width, canvas.height);
+
+            const dx = x - cx;
+            const dy = y - cy;
+            const d = Math.sqrt(dx * dx + dy * dy);
+
+            if (d < r) {
+              const t = 1 - d / r;
+              alpha += f.s * t * t;
+            }
+          }
+
+          alpha = Math.max(0.005, Math.min(alpha, 0.15));
+
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.beginPath();
+          ctx.arc(x, y, DOT_SIZE, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      const vignette = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        Math.min(canvas.width, canvas.height) * 0.35,
+
+        canvas.width / 2,
+        canvas.height / 2,
+        Math.max(canvas.width, canvas.height) * 0.8
+      );
+
+      vignette.addColorStop(0, "rgba(0,0,0,0)");
+      vignette.addColorStop(0.7, "rgba(0,0,0,0.05)");
+      vignette.addColorStop(1, "rgba(0,0,0,0.3)");
+
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    resize();
+    addEventListener("resize", resize);
+  </script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+
+</html>

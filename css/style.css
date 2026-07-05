@@ -1,0 +1,67 @@
+:root {
+    --bg: #0B0E14;
+    --text: #BFBDB6;
+    --muted: #8b8b8a;
+    --accent: #EA6C73;
+    --success: #7FD962;
+    --m40: #1E232B;
+    --m41: #EA6C73;
+    --m42: #7FD962;
+    --m43: #F9AF4F;
+    --m44: #53BDFA;
+    --m45: #CDA1FA;
+    --m46: #CDA1FA;
+    --m47: #BFBDB6;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background-color: var(--bg);
+    color: #d7dbe4;
+}
+
+#bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    max-width: 80ch;
+    margin: 6rem auto;
+    font-family: "JetBrains Mono", monospace;
+}
+
+h1 {
+    color: var(--text);
+}
+
+h2 {
+    color: var(--muted);
+}
+
+a {
+    color: var(--accent);
+}
+
+p, span {
+    color: var(--muted);
+}
+
+.shell-prompt {
+    color: var(--success);
+}
+
+.cursor {
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
