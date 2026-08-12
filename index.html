@@ -73,7 +73,7 @@
       draw();
     }
 
-    function draw() {
+    function drawBackground() {
       ctx.fillStyle = "#0b0c14";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -138,6 +138,10 @@
 
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function draw() {
+      drawBackground();
     }
 
     resize();
