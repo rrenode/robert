@@ -35,20 +35,42 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
       parsed.dirs.add key
   
   for dir in parsed.dirs:
-    # if first c is `/` then create from root
+    var ctx: FsDir
+    if dir.startsWith('/'):
+      ctx = s.fs.root
+    else:
+      ctx = s.fs.cwd
+    
+    let pathSplit = dir.split('/')
 
-    # else create from CWD
-    let pathSplit = dir.split("/")
+    for i, part in pathSplit:
+      if part.len == 0: continue
 
-
-  echo parsed
-
-when isMainModule:
-  let root = FsDir(name: "/")
-  var rootShell = Shell(
-    user:"robert@renode", 
-    fs: ShellFs(root:root, cwd:root)
-  )
-  let cmds = "mkdir -p a/b/c zz/top jj".parseCmdLine()
-  rootShell.mkdirShell(cmds)
-  echo rootShell.cwd
+      let isLast = i == pathSplit.high 
+      var existing: FsNode = nil
+      for child in ctx.children:
+        if child.name == part:
+          existing = child
+          break
+      
+      if existing.isNil:
+        if not isLast and not parsed.createParents:
+          echo "mkdir: cannot create directory '", dir, "': No such file or directory"
+          break
+        
+        let newDir = FsDir(name: part)
+        ctx.addChild(newDir)
+        ctx = newDir
+      
+        if parsed.verbose:
+          echo "mkdir: created directory '", newDir.path, "'"
+      
+      elif existing of FsDir:
+        if isLast and not parsed.createParents:
+          echo "mkdir: cannot create directory '", dir, "': File exists"
+          break
+        ctx = FsDir(existing)
+      
+      else:
+        echo "mkdir: cannot create directory '", dir, "': Not a directory"
+        break
