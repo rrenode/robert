@@ -135,8 +135,8 @@ proc dispatchCommandShell*(s: Shell, cmd: string) =
 proc newShell*(user: string): Shell =
   let root = FsDir(name: "/")
   result = Shell(user:user, fs: ShellFs(root:root, cwd:root))
-  result.cmds["mkdir"] = mkdirshell
-  result.cmds["echo"] = echoShell
-  result.cmds["cd"] = cdShell
-  result.cmds["ls"] = lsShell
-  result.cmds["clr"] = clrShell
+  result.registerShellCommand("mkdir", mkdirshell)
+  result.registerShellCommand("echo", echoShell)
+  result.registerShellCommand("cd", cdShell)
+  result.registerShellCommand("ls", lsShell)
+  result.registerShellCommand("clr", clrShell)
