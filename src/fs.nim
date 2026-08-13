@@ -27,7 +27,7 @@ proc listChildren(d: FsDir): string =
   if d.children.len == 0: return "()"
   result = "("
   for c in d.children:
-    result.add c.name
+    result.add c.name & ","
   result.add ")"
 
 proc `$`*(o: FsNode): string =
@@ -37,7 +37,7 @@ proc `$`*(o: FsNode): string =
   if o of FsFile:
     let f = FsFile(o)
     result = "(file: " & f.name &
-      ", parent: " & $f.parent &
+      ", parent: " & $f.parent.name &
       ", content: " & f.content & ")"
 
   elif o of FsDir:
@@ -46,9 +46,9 @@ proc `$`*(o: FsNode): string =
       result = "(dir: " & d.name & ", children: " & listChildren(d) & ")"
     else:
       result = "(dir: " & d.name &
-        ", parent: " & $d.parent &
+        ", parent: " & $d.parent.name &
         ", children: " & listChildren(d) & ")"
-        
+
   else:
     result = o.name
 
