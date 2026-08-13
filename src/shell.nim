@@ -16,6 +16,14 @@ type
 proc cwd(s: Shell): string =
   s.fs.cwd.path
 
+proc cwdNode*(s: Shell): FsDir =
+  s.fs.cwd
+
+proc lsShell(s: Shell): string =
+  let children = listChildren(s.cwdNode)
+  for c in children:
+    result.add "\n" & c
+
 proc mkdirShell(s: Shell, args: seq[string] = @[]) =
   var parsed = MkdirCmdArgs()
   for kind, key, val in getopt(args):
@@ -74,3 +82,13 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
       else:
         echo "mkdir: cannot create directory '", dir, "': Not a directory"
         break
+
+when isMainModule:
+  let root = FsDir(name: "/")
+  var rootShell = Shell(
+    user:"robert@renode", 
+    fs: ShellFs(root:root, cwd:root)
+  )
+  let cmds = "mkdir -p a/b/c zz/top jj".parseCmdLine()
+  rootShell.mkdirShell(cmds)
+  echo $rootShell.ls
