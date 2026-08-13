@@ -30,8 +30,8 @@ proc strListChildren(d: FsDir): string =
     result.add c.name & ","
   result.add ")"
 
-proc listChildren(d: FsDir): seq[string] =
-  if d.children.len == 0: return "()"
+proc listChildren*(d: FsDir): seq[string] =
+  if d.children.len == 0: return
   for c in d.children:
     result.add c.name
 
