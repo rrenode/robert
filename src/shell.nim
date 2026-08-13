@@ -9,13 +9,15 @@ type
   ShellOutput* = object
     kind*: ShellOutputKind
     text*: string
+  
+  ShellCommandProc* = proc(s: Shell, args: seq[string])
 
   Shell* = ref object
     user*: string
     fs*: ShellFs
     outputBuffer*: seq[ShellOutput]
     prevCmdsBuffer*: seq[ShellOutput]
-    cmds: Table[string, proc(s: Shell, args: seq[string])]
+    cmds: Table[string, ShellCommandProc]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
@@ -113,6 +115,13 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
       else:
         s.secho "mkdir: cannot create directory '" & dir & "': Not a directory"
         break
+
+proc registerShellCommand*(s: Shell, cmd: string, call: ShellCommandProc) =
+  if s.cmds.hasKey(cmd):
+    echo "Command with name " & cmd & " already exists. Cannot re-register!"
+    return
+  s.cmds[cmd] = call
+  echo "Registered shell command: " & cmd
 
 proc dispatchCommandShell*(s: Shell, cmd: string) =
   let args = cmd.parseCmdLine()
