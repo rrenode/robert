@@ -24,6 +24,13 @@ proc lsShell(s: Shell): string =
   for c in children:
     result.add "\n" & c
 
+proc cdShell(s: Shell, args: seq[string] = @[]) =
+  var existing: FsNode = s.fs.resolvePath(args[0])
+  if existing.isNil:
+    echo "Cannot find path `" & args[0] & "` because it does not exist."
+    return
+  s.fs.cwd = existing.FsDir
+
 proc mkdirShell(s: Shell, args: seq[string] = @[]) =
   var parsed = MkdirCmdArgs()
   for kind, key, val in getopt(args):
@@ -82,13 +89,3 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
       else:
         echo "mkdir: cannot create directory '", dir, "': Not a directory"
         break
-
-when isMainModule:
-  let root = FsDir(name: "/")
-  var rootShell = Shell(
-    user:"robert@renode", 
-    fs: ShellFs(root:root, cwd:root)
-  )
-  let cmds = "mkdir -p a/b/c zz/top jj".parseCmdLine()
-  rootShell.mkdirShell(cmds)
-  echo $rootShell.ls
