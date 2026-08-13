@@ -1,10 +1,4 @@
-include karax / prelude
-import karax/kdom
-
 type
-  FsKind* = enum
-    fsFile, fsDir
-
   FsNode* = ref object of RootObj
     parent*: FsNode
     name*: string
@@ -12,12 +6,20 @@ type
   FsDir* = ref object of FsNode
     children*: seq[FsNode]
   
-  ExecProc* = proc(args: seq[string]): VNode
+  ExecResult* = object
+    output*: string
+    exitCode*: int
+
+  ExecProc* = proc(args: seq[string]): ExecResult
 
   FsFile* = ref object of FsNode
     content*: string
     executable*: bool = false
     execProc*: ExecProc
+  
+  ShellFs* = ref object
+    root*: FsDir
+    cwd*: FsDir
 
 proc listChildren(d: FsDir): string =
   if d.children.len == 0: return "()"
@@ -42,7 +44,7 @@ method `$`(o: FsDir): string =
     result = "(dir: " & o.name & ", parent: " & $o.parent & ", children: " & listChildren(o) & ")"
 
 proc path*(n: FsNode): string =
-  if n.parent.isNil: return ""
+  if n.parent.isNil: return "/"
   result = n.name
 
   proc recurseParents(curNode: FsNode, cur: string): string =
