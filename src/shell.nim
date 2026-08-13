@@ -12,12 +12,17 @@ type
   
   ShellCommandProc* = proc(s: Shell, args: seq[string])
 
+  ShellCommand* = object
+    name*: string
+    toCall*: ShellCommandProc
+    desc*: string
+
   Shell* = ref object
     user*: string
     fs*: ShellFs
     outputBuffer*: seq[ShellOutput]
     prevCmdsBuffer*: seq[ShellOutput]
-    cmds: Table[string, ShellCommandProc]
+    cmds: Table[string, ShellCommand]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
@@ -116,11 +121,11 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
         s.secho "mkdir: cannot create directory '" & dir & "': Not a directory"
         break
 
-proc registerShellCommand*(s: Shell, cmd: string, call: ShellCommandProc) =
+proc registerShellCommand*(s: Shell, cmd: string, call: ShellCommandProc, description: string = "") =
   if s.cmds.hasKey(cmd):
     echo "Command with name " & cmd & " already exists. Cannot re-register!"
     return
-  s.cmds[cmd] = call
+  s.cmds[cmd] = ShellCommand(name:cmd, toCall:call, desc:description)
   echo "Registered shell command: " & cmd
 
 proc dispatchCommandShell*(s: Shell, cmd: string) =
@@ -130,7 +135,7 @@ proc dispatchCommandShell*(s: Shell, cmd: string) =
   if not s.cmds.hasKey(args[0]):
     s.secho "The command " & args[0] & " is unknown..."
     return
-  s.cmds[args[0]](s, args)
+  s.cmds[args[0]].toCall(s, args)
 
 proc newShell*(user: string): Shell =
   let root = FsDir(name: "/")
