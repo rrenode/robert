@@ -23,12 +23,17 @@ type
     root*: FsDir
     cwd*: FsDir
 
-proc listChildren(d: FsDir): string =
+proc strListChildren(d: FsDir): string =
   if d.children.len == 0: return "()"
   result = "("
   for c in d.children:
     result.add c.name & ","
   result.add ")"
+
+proc listChildren(d: FsDir): seq[string] =
+  if d.children.len == 0: return "()"
+  for c in d.children:
+    result.add c.name
 
 proc `$`*(o: FsNode): string =
   if o.isNil:
@@ -43,11 +48,11 @@ proc `$`*(o: FsNode): string =
   elif o of FsDir:
     let d = FsDir(o)
     if d.parent.isNil:
-      result = "(dir: " & d.name & ", children: " & listChildren(d) & ")"
+      result = "(dir: " & d.name & ", children: " & strListChildren(d) & ")"
     else:
       result = "(dir: " & d.name &
         ", parent: " & $d.parent.name &
-        ", children: " & listChildren(d) & ")"
+        ", children: " & strListChildren(d) & ")"
 
   else:
     result = o.name
