@@ -15,7 +15,7 @@ type
     fs*: ShellFs
     outputBuffer*: seq[ShellOutput]
     prevCmdsBuffer*: seq[ShellOutput]
-    cmds*: Table[string, proc(s: Shell, args: seq[string])]
+    cmds: Table[string, proc(s: Shell, args: seq[string])]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
