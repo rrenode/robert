@@ -1,3 +1,5 @@
+import std/strutils
+
 type
   FsNode* = ref object of RootObj
     parent*: FsNode
@@ -45,7 +47,6 @@ method `$`(o: FsDir): string =
 
 proc path*(n: FsNode): string =
   if n.parent.isNil: return "/"
-  result = n.name
 
   proc recurseParents(curNode: FsNode, cur: string): string =
     if curNode.parent.isNil: return cur
@@ -53,7 +54,7 @@ proc path*(n: FsNode): string =
     let next = curNode.parent.name & "/" & cur
     recurseParents(curNode.parent, next)
   
-  echo recurseParents(n, n.name)
+  return recurseParents(n, n.name)
 
 proc addChild*(dir: FsDir, child: FsNode) =
   if child notin dir.children:
