@@ -1,4 +1,4 @@
-import std/[parseopt, os, strutils]
+import std/[parseopt, os, strutils, tables]
 
 import fs
 
@@ -14,40 +14,48 @@ type
     user*: string
     fs*: ShellFs
     outputBuffer*: seq[ShellOutput]
+    prevCmdsBuffer*: seq[ShellOutput]
+    cmds*: Table[string, proc(s: Shell, args: seq[string])]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
     createParents*: bool = false
     verbose*: bool = false
 
-proc shecho*(s: Shell, args: seq[string] = @[]) =
-  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+proc echoShell(s: Shell, args: seq[string] = @[]) =
   s.outputBuffer.add ShellOutput(kind:sokInfo, text:args[1..^1].join(" "))
 
 proc secho*(s: Shell, msg: string) =
   let cmd = msg.parseCmdLine()
   s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg)
 
-proc cwd(s: Shell): string =
+proc cwd*(s: Shell): string =
   s.fs.cwd.path
 
-proc cwdNode*(s: Shell): FsDir =
+proc cwdNode(s: Shell): FsDir =
   s.fs.cwd
 
-proc lsShell*(s: Shell): string =
-  let children = listChildren(s.cwdNode)
-  for c in children:
-    result.add "\n" & c
+proc clrShell(s: Shell, args: seq[string] = @[]) =
+  s.outputBuffer = @[]
 
-proc cdShell*(s: Shell, args: seq[string] = @[]) =
+proc lsShell(s: Shell, args: seq[string] = @[]) =
+  let children = listChildren(s.cwdNode)
+  if children.len == 0: 
+    s.secho "Seems empty..."
+    return
+  var final: string = ""
+  for c in children:
+    final.add "\n" & c
+  s.secho final
+  
+proc cdShell(s: Shell, args: seq[string] = @[]) =
   var existing: FsNode = s.fs.resolvePath(args[0])
   if existing.isNil:
     s.secho "Cannot find path `" & args[0] & "` because it does not exist."
     return
   s.fs.cwd = existing.FsDir
 
-proc mkdirShell*(s: Shell, args: seq[string] = @[]) =
-  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+proc mkdirShell(s: Shell, args: seq[string] = @[]) =
   var parsed = MkdirCmdArgs()
   for kind, key, val in getopt(args):
     case kind
@@ -106,6 +114,20 @@ proc mkdirShell*(s: Shell, args: seq[string] = @[]) =
         s.secho "mkdir: cannot create directory '" & dir & "': Not a directory"
         break
 
+proc dispatchCommandShell*(s: Shell, cmd: string) =
+  let args = cmd.parseCmdLine()
+  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+  s.prevCmdsBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+  if not s.cmds.hasKey(args[0]):
+    s.secho "The command " & args[0] & " is unknown..."
+    return
+  s.cmds[args[0]](s, args)
+
 proc newShell*(user: string): Shell =
   let root = FsDir(name: "/")
-  return Shell(user:user, fs: ShellFs(root:root, cwd:root))
+  result = Shell(user:user, fs: ShellFs(root:root, cwd:root))
+  result.cmds["mkdir"] = mkdirshell
+  result.cmds["echo"] = echoShell
+  result.cmds["cd"] = cdShell
+  result.cmds["ls"] = lsShell
+  result.cmds["clr"] = clrShell
