@@ -3,15 +3,30 @@ import std/[parseopt, os, strutils]
 import fs
 
 type
+  ShellOutputKind* = enum
+    sokCommand, sokStdout, sokStderr, sokInfo
+
+  ShellOutput* = object
+    kind*: ShellOutputKind
+    text*: string
+
   Shell* = ref object
     user*: string
     fs*: ShellFs
-    cmds*: seq[FsFile]
+    outputBuffer*: seq[ShellOutput]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
     createParents*: bool = false
     verbose*: bool = false
+
+proc shecho*(s: Shell, args: seq[string] = @[]) =
+  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+  s.outputBuffer.add ShellOutput(kind:sokInfo, text:args[1..^1].join(" "))
+
+proc secho*(s: Shell, msg: string) =
+  let cmd = msg.parseCmdLine()
+  s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg)
 
 proc cwd(s: Shell): string =
   s.fs.cwd.path
@@ -19,19 +34,20 @@ proc cwd(s: Shell): string =
 proc cwdNode*(s: Shell): FsDir =
   s.fs.cwd
 
-proc lsShell(s: Shell): string =
+proc lsShell*(s: Shell): string =
   let children = listChildren(s.cwdNode)
   for c in children:
     result.add "\n" & c
 
-proc cdShell(s: Shell, args: seq[string] = @[]) =
+proc cdShell*(s: Shell, args: seq[string] = @[]) =
   var existing: FsNode = s.fs.resolvePath(args[0])
   if existing.isNil:
-    echo "Cannot find path `" & args[0] & "` because it does not exist."
+    s.secho "Cannot find path `" & args[0] & "` because it does not exist."
     return
   s.fs.cwd = existing.FsDir
 
-proc mkdirShell(s: Shell, args: seq[string] = @[]) =
+proc mkdirShell*(s: Shell, args: seq[string] = @[]) =
+  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
   var parsed = MkdirCmdArgs()
   for kind, key, val in getopt(args):
     case kind
@@ -48,7 +64,7 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
     of cmdArgument:
       if key == "mkdir": continue
       parsed.dirs.add key
-  
+
   for dir in parsed.dirs:
     var ctx: FsDir
     if dir.startsWith('/'):
@@ -70,7 +86,7 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
       
       if existing.isNil:
         if not isLast and not parsed.createParents:
-          echo "mkdir: cannot create directory '", dir, "': No such file or directory"
+          s.secho "mkdir: cannot create directory '" & dir & "': No such file or directory"
           break
         
         let newDir = FsDir(name: part)
@@ -78,14 +94,18 @@ proc mkdirShell(s: Shell, args: seq[string] = @[]) =
         ctx = newDir
       
         if parsed.verbose:
-          echo "mkdir: created directory '", newDir.path, "'"
+          s.secho "mkdir: created directory '" & newDir.path & "'"
       
       elif existing of FsDir:
         if isLast and not parsed.createParents:
-          echo "mkdir: cannot create directory '", dir, "': File exists"
+          s.secho "mkdir: cannot create directory '" & dir & "': File exists"
           break
         ctx = FsDir(existing)
       
       else:
-        echo "mkdir: cannot create directory '", dir, "': Not a directory"
+        s.secho "mkdir: cannot create directory '" & dir & "': Not a directory"
         break
+
+proc newShell*(user: string): Shell =
+  let root = FsDir(name: "/")
+  return Shell(user:user, fs: ShellFs(root:root, cwd:root))
