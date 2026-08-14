@@ -9,6 +9,7 @@ type
   ShellOutput* = object
     kind*: ShellOutputKind
     text*: string
+    pwd*: string
   
   ShellCommandProc* = proc(s: Shell, args: seq[string])
 
@@ -29,18 +30,19 @@ type
     createParents*: bool = false
     verbose*: bool = false
 
-proc echoShell(s: Shell, args: seq[string] = @[]) =
-  s.outputBuffer.add ShellOutput(kind:sokInfo, text:args[1..^1].join(" "))
-
-proc secho*(s: Shell, msg: string) =
-  let cmd = msg.parseCmdLine()
-  s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg)
-
 proc cwd*(s: Shell): string =
   s.fs.cwd.path
 
 proc cwdNode(s: Shell): FsDir =
   s.fs.cwd
+
+proc echoShell(s: Shell, args: seq[string] = @[]) =
+  s.outputBuffer.add ShellOutput(kind:sokInfo, text:args[1..^1].join(" "), pwd:s.cwd)
+
+proc secho*(s: Shell, msg: string) =
+  let cmd = msg.parseCmdLine()
+  s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg, pwd:s.cwd)
+
 
 proc clrShell(s: Shell, args: seq[string] = @[]) =
   s.outputBuffer = @[]
@@ -56,7 +58,10 @@ proc lsShell(s: Shell, args: seq[string] = @[]) =
   s.secho final
   
 proc cdShell(s: Shell, args: seq[string] = @[]) =
-  var existing: FsNode = s.fs.resolvePath(args[0])
+  let pathIdx = if args.len > 0 and args[0] == "cd": 1 else: 0
+  if pathIdx >= args.len: return
+  let path = args[pathIdx]
+  var existing: FsNode = s.fs.resolvePath(path)
   if existing.isNil:
     s.secho "Cannot find path `" & args[0] & "` because it does not exist."
     return
@@ -130,8 +135,8 @@ proc registerShellCommand*(s: Shell, cmd: string, call: ShellCommandProc, descri
 
 proc dispatchCommandShell*(s: Shell, cmd: string) =
   let args = cmd.parseCmdLine()
-  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
-  s.prevCmdsBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "))
+  s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "), pwd:s.cwd)
+  s.prevCmdsBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "), pwd:s.cwd)
   if not s.cmds.hasKey(args[0]):
     s.secho "The command " & args[0] & " is unknown..."
     return

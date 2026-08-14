@@ -22,23 +22,13 @@ proc cmdWhoami(args: seq[string] = @[]): VNode =
     h2:
       text "|-> Math & Music Tutor"
 
-proc newCommandView(input: string, output: VNode): VNode =
-  result = buildHtml(tdiv(class="command")):
-    p:
-      span(class="shell-prompt"):
-        text "robert@renode:~$"
-      span:
-        text " " & input
-    tdiv(class="command-output"):
-      output
-
 var curTyped = ""
 
-proc createShellCursor: VNode =
+proc createShellCursor(s: Shell): VNode =
   result = buildHtml(tdiv(class="command")):
     p:
       span(class="shell-prompt"):
-        text "robert@renode:~$ "
+        text s.user & ":" & s.cwd & "$ "
 
       input(
         class = "shell-input",
@@ -49,7 +39,7 @@ proc createShellCursor: VNode =
           curTyped = $InputElement(ev.target).value
         proc onkeyupenter(ev: Event, n: VNode) =
           if curTyped.len != 0:
-            rootShell.dispatchCommandShell(curTyped)
+            s.dispatchCommandShell(curTyped)
             curTyped = ""
     tdiv(class="command-output")
 
@@ -57,7 +47,7 @@ proc renderCommand(s: Shell, d: ShellOutput): VNode =
   result = buildHtml(tdiv(class="command")):
     p:
       span(class="shell-prompt"):
-        text "robert@renode:~$ "
+        text s.user & ":" & d.pwd & "$ "
       span:
         text d.text
 
@@ -82,9 +72,7 @@ proc createDom: VNode =
   result = buildHtml(tdiv):
     canvas(id="bg")
     main():
-      #newCommandView("whoami", cmdWhoami())
       renderOutput(rootShell)
-      createShellCursor()
+      createShellCursor(rootShell)
 
-    
 setRenderer createDom
