@@ -54,6 +54,9 @@ proc secho*(s: Shell, msg: string) =
   let cmd = msg.parseCmdLine()
   s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg, pwd:s.cwd)
 
+proc helpShell(s: Shell, args:seq[string] = @[]) =
+  for c in s.cmds.values:
+    s.secho c.name & " -> " & c.desc
 
 proc clrShell(s: Shell, args: seq[string] = @[]) =
   s.outputBuffer = @[]
@@ -161,3 +164,4 @@ proc newShell*(user: string): Shell =
   result.registerShellCommand("cd", cdShell, "Change directory")
   result.registerShellCommand("ls", lsShell, "List files/directories")
   result.registerShellCommand("clr", clrShell, "Clear terminal")
+  result.registerShellCommand("help", helpShell, "Shows this help")
