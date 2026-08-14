@@ -1,3 +1,14 @@
+## Shell Commands:
+## ls          list files/directories
+## cd          change directory
+## pwd         print current directory
+## mkdir       create directory
+## rmdir       remove empty directory
+## echo        print text
+## clear/clr   clear terminal
+## whoami      displays my personal about me
+## help        list available commands
+
 import std/[parseopt, os, strutils, tables]
 
 import fs
@@ -145,8 +156,8 @@ proc dispatchCommandShell*(s: Shell, cmd: string) =
 proc newShell*(user: string): Shell =
   let root = FsDir(name: "/")
   result = Shell(user:user, fs: ShellFs(root:root, cwd:root))
-  result.registerShellCommand("mkdir", mkdirshell)
-  result.registerShellCommand("echo", echoShell)
-  result.registerShellCommand("cd", cdShell)
-  result.registerShellCommand("ls", lsShell)
-  result.registerShellCommand("clr", clrShell)
+  result.registerShellCommand("mkdir", mkdirshell, "Create directory")
+  result.registerShellCommand("echo", echoShell, "Print text")
+  result.registerShellCommand("cd", cdShell, "Change directory")
+  result.registerShellCommand("ls", lsShell, "List files/directories")
+  result.registerShellCommand("clr", clrShell, "Clear terminal")
