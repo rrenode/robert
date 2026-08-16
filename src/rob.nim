@@ -3,10 +3,6 @@ import karax/kdom except setInterval
 import karax/vstyles
 from sugar import `=>`
 
-import std/parseopt
-import std/os
-
-
 import shell
 
 var rootShell: Shell = newShell("robert@renode")
