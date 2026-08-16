@@ -3,6 +3,8 @@ import karax/kdom except setInterval
 import karax/vstyles
 from sugar import `=>`
 
+import std/[jsffi]
+
 import shell
 
 var rootShell: Shell = newShell("robert@renode")
@@ -18,7 +20,9 @@ proc cmdWhoami(args: seq[string] = @[]): VNode =
     h2:
       text "|-> Math & Music Tutor"
 
-var curTyped = ""
+var 
+  curTyped = ""
+  curCmdIndex: int = 0
 
 proc createShellCursor(s: Shell): VNode =
   result = buildHtml(tdiv(class="command")):
@@ -33,10 +37,32 @@ proc createShellCursor(s: Shell): VNode =
       ):
         proc oninput(ev: Event, n: VNode) =
           curTyped = $InputElement(ev.target).value
+          curCmdIndex = 0
         proc onkeyupenter(ev: Event, n: VNode) =
           if curTyped.len != 0:
             s.dispatchCommandShell(curTyped)
             curTyped = ""
+        proc onkeydown(ev: Event, n: VNode) =
+          let kev = KeyboardEvent(ev)
+          echo curCmdIndex
+          case kev.key
+          of "ArrowUp":
+            curCmdIndex += 1
+            if curCmdIndex > s.prevCmdsBuffer.len:
+              curCmdIndex -= 1
+              return
+            curTyped = s.prevCmdsBuffer[^curCmdIndex].text
+          of "ArrowDown":
+            if curCmdIndex > 1:
+              curCmdIndex -= 1
+              curTyped = s.prevCmdsBuffer[^curCmdIndex].text
+            else:
+              curCmdIndex = 0
+              curTyped = ""
+          of "Escape":
+            curCmdIndex = 0
+            curTyped = ""
+          else: discard
     tdiv(class="command-output")
 
 proc renderCommand(s: Shell, d: ShellOutput): VNode =
