@@ -8,6 +8,7 @@ import std/[jsffi]
 import shell
 
 var rootShell: Shell = newShell("robert@renode")
+rootShell.dispatchCommandShell("help")
 
 var 
   curTyped = ""
