@@ -4,5 +4,3 @@ local/*
 nimble.develop
 nimble.paths
 nimbledeps
-app.html
-app.js

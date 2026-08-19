@@ -8,6 +8,11 @@
 ## clear/clr   clear terminal
 ## whoami      displays my personal about me
 ## help        list available commands
+## 
+## Todo:
+## touch
+## cat
+## rm
 
 import std/[parseopt, os, strutils, tables]
 
