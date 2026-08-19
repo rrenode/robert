@@ -4,4 +4,4 @@ when withDir(thisDir(), system.fileExists("nimble.paths")):
 # end Nimble config
 
 task build, "Builds app.js into site dir":
-  exec """nim js -o:"site/app.js" src/rob.nim"""
+  exec """nim js -o:"docs/app.js" src/rob.nim"""
