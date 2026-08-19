@@ -9,17 +9,6 @@ import shell
 
 var rootShell: Shell = newShell("robert@renode")
 
-proc cmdWhoami(args: seq[string] = @[]): VNode =
-  result = buildHtml(tdiv):
-    h1:
-      text "Robert J Renode IV"
-    h2:
-      text "|-> Software Dev"
-    h2:
-      text "|-> Need something!"
-    h2:
-      text "|-> Math & Music Tutor"
-
 var 
   curTyped = ""
   curCmdIndex: int = 0
