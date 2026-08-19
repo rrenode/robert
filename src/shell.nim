@@ -35,6 +35,7 @@ type
     outputBuffer*: seq[ShellOutput]
     prevCmdsBuffer*: seq[ShellOutput]
     cmds: Table[string, ShellCommand]
+    aliases: Table[string, string]
   
   MkdirCmdArgs* = object
     dirs*: seq[string]
@@ -144,14 +145,30 @@ proc registerShellCommand*(s: Shell, cmd: string, call: ShellCommandProc, descri
   if s.cmds.hasKey(cmd):
     echo "Command with name " & cmd & " already exists. Cannot re-register!"
     return
+  if s.aliases.hasKey(cmd):
+    echo "Alias with name " & cmd & " already exists. Cannot re-register!"
+    return
   s.cmds[cmd] = ShellCommand(name:cmd, toCall:call, desc:description)
   echo "Registered shell command: " & cmd
+
+proc registerShellAlias*(s: Shell, alias: string, cmd: string) =
+  if s.cmds.hasKey(alias):
+    echo "Command with name " & cmd & " already exists. Cannot re-register!"
+    return
+  if s.aliases.hasKey(alias):
+    echo "Alias with name " & cmd & " already exists. Cannot re-register!"
+    return
+  s.aliases[alias] = cmd
+  echo "Registered alias: `" & alias & "` to command: `" & cmd & "`"
 
 proc dispatchCommandShell*(s: Shell, cmd: string) =
   let args = cmd.parseCmdLine()
   s.outputBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "), pwd:s.cwd)
   s.prevCmdsBuffer.add ShellOutput(kind:sokCommand, text:args.join(" "), pwd:s.cwd)
   if not s.cmds.hasKey(args[0]):
+    if s.aliases.hasKey(args[0]):
+      s.dispatchCommandShell(s.aliases[args[0]] & args[1..^1].join(" "))
+      return
     s.secho "The command " & args[0] & " is unknown..."
     return
   s.cmds[args[0]].toCall(s, args)
@@ -164,4 +181,5 @@ proc newShell*(user: string): Shell =
   result.registerShellCommand("cd", cdShell, "Change directory")
   result.registerShellCommand("ls", lsShell, "List files/directories")
   result.registerShellCommand("clr", clrShell, "Clear terminal")
+  result.registerShellAlias("clear", "clr")
   result.registerShellCommand("help", helpShell, "Shows this help")
