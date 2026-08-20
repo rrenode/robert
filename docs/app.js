@@ -137,7 +137,7 @@ var NTI1308622862 = {size: 0, kind: 18, base: null, node: null, finalizer: null}
 var NTI1308622859 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1325400067 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
 var NTI1325400068 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI1325400345 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
+var NTI1325400355 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
 var NTI1073741906 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
 var NTI1073741913 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI1073741850 = {size: 0, kind: 24, base: null, node: null, finalizer: null};
@@ -319,7 +319,7 @@ var NNI1325400068 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{
 {kind: 1, offset: "text", len: 0, typ: NTI33554449, name: "text", sons: null}, 
 {kind: 1, offset: "pwd", len: 0, typ: NTI33554449, name: "pwd", sons: null}]};
 NTI1325400068.node = NNI1325400068;
-NTI1325400345.base = NTI1325400068;
+NTI1325400355.base = NTI1325400068;
 var NNI1308622862 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI1191182339, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI33554449, name: "Field1", sons: null}, 
 {kind: 1, offset: "Field2", len: 0, typ: NTI33554449, name: "Field2", sons: null}]};
@@ -2890,8 +2890,8 @@ function nextTry__pureZcollectionsZtables_u34(h_p0, maxHash_p1) {
 
 }
 
-function rawGet__shell_u686(t_p0, key_p1, hc_p2, hc_p2_Idx) {
-  var result_1325400756 = 0;
+function rawGet__shell_u693(t_p0, key_p1, hc_p2, hc_p2_Idx) {
+  var result_1325400763 = 0;
 
   var F = {procname: "rawGet.rawGet", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\hashcommon.nim", line: 0};
   framePtr = F;
@@ -2906,48 +2906,48 @@ function rawGet__shell_u686(t_p0, key_p1, hc_p2, hc_p2_Idx) {
     
     if (((t_p0.data).length == 0)) {
     F.line = 43;
-    result_1325400756 = (-1);
+    result_1325400763 = (-1);
     break BeforeRet;
     }
     
     F.line = 44;
-    var h_1325400807 = (hc_p2[hc_p2_Idx] & (t_p0.data).length - 1);
+    var h_1325400814 = (hc_p2[hc_p2_Idx] & (t_p0.data).length - 1);
     Label1: {
       F.line = 45;
         Label2: while (true) {
-        if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(h_1325400807, 0, (t_p0.data).length - 1)].Field0)) break Label2;
-          if (((t_p0.data[chckIndx(h_1325400807, 0, (t_p0.data).length - 1)].Field0 == hc_p2[hc_p2_Idx]) && eqStrings(t_p0.data[chckIndx(h_1325400807, 0, (t_p0.data).length - 1)].Field1, key_p1))) {
+        if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(h_1325400814, 0, (t_p0.data).length - 1)].Field0)) break Label2;
+          if (((t_p0.data[chckIndx(h_1325400814, 0, (t_p0.data).length - 1)].Field0 == hc_p2[hc_p2_Idx]) && eqStrings(t_p0.data[chckIndx(h_1325400814, 0, (t_p0.data).length - 1)].Field1, key_p1))) {
           F.line = 51;
-          result_1325400756 = h_1325400807;
+          result_1325400763 = h_1325400814;
           break BeforeRet;
           }
           
           F.line = 52;
-          h_1325400807 = nextTry__pureZcollectionsZtables_u34(h_1325400807, (t_p0.data).length - 1);
+          h_1325400814 = nextTry__pureZcollectionsZtables_u34(h_1325400814, (t_p0.data).length - 1);
         }
     };
     F.line = 53;
-    result_1325400756 = subInt((-1), h_1325400807);
+    result_1325400763 = subInt((-1), h_1325400814);
   };
   framePtr = F.prev;
 
-  return result_1325400756;
+  return result_1325400763;
 
 }
 
-function hasKey__shell_u679(t_p0, key_p1) {
-  var result_1325400748 = false;
+function hasKey__shell_u686(t_p0, key_p1) {
+  var result_1325400755 = false;
 
   var F = {procname: "hasKey.hasKey", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim", line: 0};
   framePtr = F;
     F.line = 370;
     F.filename = "tables.nim";
-    var hc_1325400749 = [0];
+    var hc_1325400756 = [0];
     F.line = 371;
-    result_1325400748 = (0 <= rawGet__shell_u686(t_p0, key_p1, hc_1325400749, 0));
+    result_1325400755 = (0 <= rawGet__shell_u693(t_p0, key_p1, hc_1325400756, 0));
   framePtr = F.prev;
 
-  return result_1325400748;
+  return result_1325400755;
 
 }
 
@@ -3080,8 +3080,8 @@ function failedAssertImpl__stdZassertions_u86(msg_p0) {
   
 }
 
-function mustRehash__shell_u1136(t_p0) {
-  var result_1325401203 = false;
+function mustRehash__shell_u1143(t_p0) {
+  var result_1325401210 = false;
 
   var F = {procname: "mustRehash.mustRehash", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\hashcommon.nim", line: 0};
   framePtr = F;
@@ -3092,14 +3092,14 @@ function mustRehash__shell_u1136(t_p0) {
     }
     
     F.line = 35;
-    result_1325401203 = (((t_p0.data).length < addInt(t_p0.counter, divInt(t_p0.counter, 2))) || (subInt((t_p0.data).length, t_p0.counter) < 4));
+    result_1325401210 = (((t_p0.data).length < addInt(t_p0.counter, divInt(t_p0.counter, 2))) || (subInt((t_p0.data).length, t_p0.counter) < 4));
   framePtr = F.prev;
 
-  return result_1325401203;
+  return result_1325401210;
 
 }
 
-function rawInsert__shell_u1553(t_p0, data_p1, data_p1_Idx, key_p2, val_p3, hc_p4, h_p5) {
+function rawInsert__shell_u1560(t_p0, data_p1, data_p1_Idx, key_p2, val_p3, hc_p4, h_p5) {
   var F = {procname: "rawInsert.rawInsert", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tableimpl.nim", line: 0};
   framePtr = F;
     F.line = 25;
@@ -3114,29 +3114,29 @@ function rawInsert__shell_u1553(t_p0, data_p1, data_p1_Idx, key_p2, val_p3, hc_p
   
 }
 
-function enlarge__shell_u1279(t_p0) {
+function enlarge__shell_u1286(t_p0) {
   var F = {procname: "enlarge.enlarge", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim", line: 0};
   framePtr = F;
     F.line = 247;
     F.filename = "tables.nim";
-    var n_1325401349 = [];
+    var n_1325401356 = [];
     F.line = 248;
-    n_1325401349 = new Array(chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647)); for (var i = 0 ; i < chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647) ; ++i) { n_1325401349[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }    F.line = 249;
+    n_1325401356 = new Array(chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647)); for (var i = 0 ; i < chckRange(mulInt((t_p0.data).length, 2), 0, 2147483647) ; ++i) { n_1325401356[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }    F.line = 249;
     F.line = 249;
     var HEX3Atmp_587202891 = nimCopy(null, t_p0.data, NTI1325400088);
     F.line = 249;
-    t_p0.data = n_1325401349;
+    t_p0.data = n_1325401356;
     F.line = 249;
-    n_1325401349 = HEX3Atmp_587202891;
+    n_1325401356 = HEX3Atmp_587202891;
     Label1: {
       F.line = 250;
-      var i_1325401409 = 0;
+      var i_1325401416 = 0;
       F.line = 46;
       F.filename = "iterators_1.nim";
       var colontmp__587202888 = 0;
       F.line = 250;
       F.filename = "tables.nim";
-      colontmp__587202888 = (n_1325401349).length - 1;
+      colontmp__587202888 = (n_1325401356).length - 1;
       F.line = 68;
       F.filename = "iterators_1.nim";
       var res_587202889 = 0;
@@ -3146,22 +3146,22 @@ function enlarge__shell_u1279(t_p0) {
           if (!(res_587202889 <= colontmp__587202888)) break Label3;
             F.line = 250;
             F.filename = "tables.nim";
-            i_1325401409 = res_587202889;
+            i_1325401416 = res_587202889;
             F.line = 251;
-            var eh_1325401459 = n_1325401349[chckIndx(i_1325401409, 0, (n_1325401349).length - 1)].Field0;
-            if (isFilled__pureZcollectionsZtables_u31(eh_1325401459)) {
+            var eh_1325401466 = n_1325401356[chckIndx(i_1325401416, 0, (n_1325401356).length - 1)].Field0;
+            if (isFilled__pureZcollectionsZtables_u31(eh_1325401466)) {
             F.line = 253;
-            var j_1325401463 = (eh_1325401459 & (t_p0.data).length - 1);
+            var j_1325401470 = (eh_1325401466 & (t_p0.data).length - 1);
             Label4: {
               F.line = 254;
                 Label5: while (true) {
-                if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(j_1325401463, 0, (t_p0.data).length - 1)].Field0)) break Label5;
+                if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(j_1325401470, 0, (t_p0.data).length - 1)].Field0)) break Label5;
                   F.line = 255;
-                  j_1325401463 = nextTry__pureZcollectionsZtables_u34(j_1325401463, (t_p0.data).length - 1);
+                  j_1325401470 = nextTry__pureZcollectionsZtables_u34(j_1325401470, (t_p0.data).length - 1);
                 }
             };
             F.line = 257;
-            rawInsert__shell_u1553(t_p0, t_p0, "data", n_1325401349[chckIndx(i_1325401409, 0, (n_1325401349).length - 1)].Field1, n_1325401349[chckIndx(i_1325401409, 0, (n_1325401349).length - 1)].Field2, eh_1325401459, j_1325401463);
+            rawInsert__shell_u1560(t_p0, t_p0, "data", n_1325401356[chckIndx(i_1325401416, 0, (n_1325401356).length - 1)].Field1, n_1325401356[chckIndx(i_1325401416, 0, (n_1325401356).length - 1)].Field2, eh_1325401466, j_1325401470);
             }
             
             F.line = 74;
@@ -3175,8 +3175,8 @@ function enlarge__shell_u1279(t_p0) {
   
 }
 
-function rawGetKnownHC__shell_u1727(t_p0, key_p1, hc_p2) {
-  var result_1325401797 = 0;
+function rawGetKnownHC__shell_u1734(t_p0, key_p1, hc_p2) {
+  var result_1325401804 = 0;
 
   var F = {procname: "rawGetKnownHC.rawGetKnownHC", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\hashcommon.nim", line: 0};
   framePtr = F;
@@ -3184,75 +3184,75 @@ function rawGetKnownHC__shell_u1727(t_p0, key_p1, hc_p2) {
     if (((t_p0.data).length == 0)) {
     F.line = 43;
     F.filename = "hashcommon.nim";
-    result_1325401797 = (-1);
+    result_1325401804 = (-1);
     break BeforeRet;
     }
     
     F.line = 44;
-    var h_1325401844 = (hc_p2 & (t_p0.data).length - 1);
+    var h_1325401851 = (hc_p2 & (t_p0.data).length - 1);
     Label1: {
       F.line = 45;
         Label2: while (true) {
-        if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(h_1325401844, 0, (t_p0.data).length - 1)].Field0)) break Label2;
-          if (((t_p0.data[chckIndx(h_1325401844, 0, (t_p0.data).length - 1)].Field0 == hc_p2) && eqStrings(t_p0.data[chckIndx(h_1325401844, 0, (t_p0.data).length - 1)].Field1, key_p1))) {
+        if (!isFilled__pureZcollectionsZtables_u31(t_p0.data[chckIndx(h_1325401851, 0, (t_p0.data).length - 1)].Field0)) break Label2;
+          if (((t_p0.data[chckIndx(h_1325401851, 0, (t_p0.data).length - 1)].Field0 == hc_p2) && eqStrings(t_p0.data[chckIndx(h_1325401851, 0, (t_p0.data).length - 1)].Field1, key_p1))) {
           F.line = 51;
-          result_1325401797 = h_1325401844;
+          result_1325401804 = h_1325401851;
           break BeforeRet;
           }
           
           F.line = 52;
-          h_1325401844 = nextTry__pureZcollectionsZtables_u34(h_1325401844, (t_p0.data).length - 1);
+          h_1325401851 = nextTry__pureZcollectionsZtables_u34(h_1325401851, (t_p0.data).length - 1);
         }
     };
     F.line = 53;
-    result_1325401797 = subInt((-1), h_1325401844);
+    result_1325401804 = subInt((-1), h_1325401851);
   };
   framePtr = F.prev;
 
-  return result_1325401797;
+  return result_1325401804;
 
 }
 
-function HEX5BHEX5DHEX3D__shell_u971(t_p0, key_p1, val_p2) {
+function HEX5BHEX5DHEX3D__shell_u978(t_p0, key_p1, val_p2) {
   var F = {procname: "[]=.[]=", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim", line: 0};
   framePtr = F;
     if (((t_p0.data).length == 0)) {
     F.line = 182;
     F.filename = "tableimpl.nim";
-    var correctSizeHEX60gensym13_1325401085 = slotsNeeded__pureZcollectionsZtables_u42(32);
+    var correctSizeHEX60gensym13_1325401092 = slotsNeeded__pureZcollectionsZtables_u42(32);
     F.line = 186;
     t_p0.counter = 0;
     F.line = 187;
-    t_p0.data = new Array(chckRange(correctSizeHEX60gensym13_1325401085, 0, 2147483647)); for (var i = 0 ; i < chckRange(correctSizeHEX60gensym13_1325401085, 0, 2147483647) ; ++i) { t_p0.data[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }    }
+    t_p0.data = new Array(chckRange(correctSizeHEX60gensym13_1325401092, 0, 2147483647)); for (var i = 0 ; i < chckRange(correctSizeHEX60gensym13_1325401092, 0, 2147483647) ; ++i) { t_p0.data[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }    }
     
     F.line = 59;
-    var hc_1325401094 = [0];
+    var hc_1325401101 = [0];
     F.line = 60;
-    var index_1325401101 = rawGet__shell_u686(t_p0, key_p1, hc_1325401094, 0);
-    if ((0 <= index_1325401101)) {
+    var index_1325401108 = rawGet__shell_u693(t_p0, key_p1, hc_1325401101, 0);
+    if ((0 <= index_1325401108)) {
     F.line = 61;
-    t_p0.data[chckIndx(index_1325401101, 0, (t_p0.data).length - 1)].Field2 = nimCopy(t_p0.data[chckIndx(index_1325401101, 0, (t_p0.data).length - 1)].Field2, val_p2, NTI1325400070);
+    t_p0.data[chckIndx(index_1325401108, 0, (t_p0.data).length - 1)].Field2 = nimCopy(t_p0.data[chckIndx(index_1325401108, 0, (t_p0.data).length - 1)].Field2, val_p2, NTI1325400070);
     }
     else {
       if (((t_p0.data).length == 0)) {
       F.line = 182;
-      var correctSizeHEX60gensym16_1325401195 = slotsNeeded__pureZcollectionsZtables_u42(32);
+      var correctSizeHEX60gensym16_1325401202 = slotsNeeded__pureZcollectionsZtables_u42(32);
       F.line = 186;
       t_p0.counter = 0;
       F.line = 187;
-      t_p0.data = new Array(chckRange(correctSizeHEX60gensym16_1325401195, 0, 2147483647)); for (var i = 0 ; i < chckRange(correctSizeHEX60gensym16_1325401195, 0, 2147483647) ; ++i) { t_p0.data[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }      }
+      t_p0.data = new Array(chckRange(correctSizeHEX60gensym16_1325401202, 0, 2147483647)); for (var i = 0 ; i < chckRange(correctSizeHEX60gensym16_1325401202, 0, 2147483647) ; ++i) { t_p0.data[i] = {Field0: 0, Field1: [], Field2: ({name: [], toCall: null, desc: []})}; }      }
       
-      if (mustRehash__shell_u1136(t_p0)) {
+      if (mustRehash__shell_u1143(t_p0)) {
       F.line = 51;
-      enlarge__shell_u1279(t_p0);
+      enlarge__shell_u1286(t_p0);
       F.line = 52;
-      index_1325401101 = rawGetKnownHC__shell_u1727(t_p0, key_p1, hc_1325401094[0]);
+      index_1325401108 = rawGetKnownHC__shell_u1734(t_p0, key_p1, hc_1325401101[0]);
       }
       
       F.line = 53;
-      index_1325401101 = subInt((-1), index_1325401101);
+      index_1325401108 = subInt((-1), index_1325401108);
       F.line = 54;
-      rawInsert__shell_u1553(t_p0, t_p0, "data", key_p1, val_p2, hc_1325401094[0], index_1325401101);
+      rawInsert__shell_u1560(t_p0, t_p0, "data", key_p1, val_p2, hc_1325401101[0], index_1325401108);
       F.line = 62;
       t_p0.counter = addInt(t_p0.counter, 1);
     }
@@ -3262,28 +3262,28 @@ function HEX5BHEX5DHEX3D__shell_u971(t_p0, key_p1, val_p2) {
   
 }
 
-function registerShellCommand__shell_u638(s_p0, cmd_p1, call_p2, description_p3) {
+function registerShellCommand__shell_u645(s_p0, cmd_p1, call_p2, description_p3) {
   var F = {procname: "shell.registerShellCommand", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
   BeforeRet: {
-    if (hasKey__shell_u679(s_p0.cmds, cmd_p1)) {
-    F.line = 154;
+    if (hasKey__shell_u686(s_p0.cmds, cmd_p1)) {
+    F.line = 157;
     F.filename = "shell.nim";
     rawEcho(([67,111,109,109,97,110,100,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p1,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
-    F.line = 155;
-    break BeforeRet;
-    }
-    
-    if (hasKey__jsZjsffi_u380(s_p0.aliases, cmd_p1)) {
-    F.line = 157;
-    rawEcho(([65,108,105,97,115,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p1,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
     F.line = 158;
     break BeforeRet;
     }
     
-    F.line = 159;
-    HEX5BHEX5DHEX3D__shell_u971(s_p0.cmds, cmd_p1, {name: nimCopy(null, cmd_p1, NTI33554449), toCall: call_p2, desc: nimCopy(null, description_p3, NTI33554449)});
+    if (hasKey__jsZjsffi_u380(s_p0.aliases, cmd_p1)) {
     F.line = 160;
+    rawEcho(([65,108,105,97,115,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p1,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
+    F.line = 161;
+    break BeforeRet;
+    }
+    
+    F.line = 162;
+    HEX5BHEX5DHEX3D__shell_u978(s_p0.cmds, cmd_p1, {name: nimCopy(null, cmd_p1, NTI33554449), toCall: call_p2, desc: nimCopy(null, description_p3, NTI33554449)});
+    F.line = 163;
     rawEcho(([82,101,103,105,115,116,101,114,101,100,32,115,104,101,108,108,32,99,111,109,109,97,110,100,58,32]).concat(cmd_p1));
   };
   framePtr = F.prev;
@@ -4253,19 +4253,19 @@ function addChild__fs_u211(dir_p0, child_p1) {
   
 }
 
-function mkdirShell__shell_u520(s_p0, args_p1) {
+function mkdirShell__shell_u527(s_p0, args_p1) {
   var F = {procname: "shell.mkdirShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
-    F.line = 94;
+    F.line = 97;
     F.filename = "shell.nim";
-    var parsed_1325400591 = {createParents: false, verbose: false, dirs: []};
+    var parsed_1325400598 = {createParents: false, verbose: false, dirs: []};
     Label1: {
-      F.line = 95;
-      var kind_1325400592 = 0;
-      F.line = 95;
-      var key_1325400593 = [];
-      F.line = 95;
-      var val_1325400594 = [];
+      F.line = 98;
+      var kind_1325400599 = 0;
+      F.line = 98;
+      var key_1325400600 = [];
+      F.line = 98;
+      var val_1325400601 = [];
       F.line = 832;
       F.filename = "parseopt.nim";
       var p_587202896 = [initOptParser__pureZparseopt_u118(args_p1, ConstSet3, [], toRules__pureZparseopt_u49(1))];
@@ -4280,32 +4280,32 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
             break Label2;
             }
             
-            F.line = 95;
+            F.line = 98;
             F.filename = "shell.nim";
-            kind_1325400592 = p_587202896[0].kind;
-            F.line = 95;
-            key_1325400593 = p_587202896[0].key;
-            F.line = 95;
-            val_1325400594 = p_587202896[0].val;
+            kind_1325400599 = p_587202896[0].kind;
+            F.line = 98;
+            key_1325400600 = p_587202896[0].key;
+            F.line = 98;
+            val_1325400601 = p_587202896[0].val;
             Label4: {
-              F.line = 96;
-              switch (kind_1325400592) {
+              F.line = 99;
+              switch (kind_1325400599) {
               case 0:
-                F.line = 97;
+                F.line = 100;
                 break Label1;
                 break;
               case 3:
               case 2:
-                if (eqStrings(val_1325400594, [])) {
-                F.line = 100;
-                switch (toJSStr(key_1325400593)) {
+                if (eqStrings(val_1325400601, [])) {
+                F.line = 103;
+                switch (toJSStr(key_1325400600)) {
                 case "p":
-                  F.line = 102;
-                  parsed_1325400591.createParents = true;
+                  F.line = 105;
+                  parsed_1325400598.createParents = true;
                   break;
                 case "v":
-                  F.line = 104;
-                  parsed_1325400591.verbose = true;
+                  F.line = 107;
+                  parsed_1325400598.verbose = true;
                   break;
                 default: 
                   break;
@@ -4316,14 +4316,14 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
                 
                 break;
               case 1:
-                if (eqStrings(key_1325400593, [109,107,100,105,114])) {
-                F.line = 108;
+                if (eqStrings(key_1325400600, [109,107,100,105,114])) {
+                F.line = 111;
                 break Label4;
                 }
                 
-                F.line = 109;
-                var Temporary5 = nimCopy(null, key_1325400593, NTI33554449);
-                parsed_1325400591.dirs.push(Temporary5);;
+                F.line = 112;
+                var Temporary5 = nimCopy(null, key_1325400600, NTI33554449);
+                parsed_1325400598.dirs.push(Temporary5);;
                 break;
               }
             };
@@ -4331,88 +4331,88 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
       };
     };
     Label6: {
-      F.line = 111;
-      var dir_1325400602 = [];
+      F.line = 114;
+      var dir_1325400609 = [];
       F.line = 249;
       F.filename = "iterators.nim";
       var i_587202911 = 0;
       F.line = 250;
-      var L_587202912 = (parsed_1325400591.dirs).length;
+      var L_587202912 = (parsed_1325400598.dirs).length;
       Label7: {
         F.line = 251;
           Label8: while (true) {
           if (!(i_587202911 < L_587202912)) break Label8;
-            F.line = 111;
-            F.filename = "shell.nim";
-            dir_1325400602 = parsed_1325400591.dirs[chckIndx(i_587202911, 0, (parsed_1325400591.dirs).length - 1)];
-            F.line = 112;
-            var ctx_1325400603 = null;
-            if (startsWith__pureZstrutils_u1450(dir_1325400602, 47)) {
             F.line = 114;
-            ctx_1325400603 = s_p0.fs.root;
+            F.filename = "shell.nim";
+            dir_1325400609 = parsed_1325400598.dirs[chckIndx(i_587202911, 0, (parsed_1325400598.dirs).length - 1)];
+            F.line = 115;
+            var ctx_1325400610 = null;
+            if (startsWith__pureZstrutils_u1450(dir_1325400609, 47)) {
+            F.line = 117;
+            ctx_1325400610 = s_p0.fs.root;
             }
             else {
-              F.line = 116;
-              ctx_1325400603 = s_p0.fs.cwd;
+              F.line = 119;
+              ctx_1325400610 = s_p0.fs.cwd;
             }
             
-            F.line = 118;
-            var pathSplit_1325400604 = nsuSplitChar(dir_1325400602, 47, (-1));
+            F.line = 121;
+            var pathSplit_1325400611 = nsuSplitChar(dir_1325400609, 47, (-1));
             Label9: {
-              F.line = 120;
-              var i_1325400645 = 0;
-              F.line = 120;
-              var part_1325400646 = [];
+              F.line = 123;
+              var i_1325400652 = 0;
+              F.line = 123;
+              var part_1325400653 = [];
               F.line = 182;
               F.filename = "iterators.nim";
               var i_587202907 = 0;
               F.line = 183;
-              var L_587202908 = (pathSplit_1325400604).length;
+              var L_587202908 = (pathSplit_1325400611).length;
               Label10: {
                 F.line = 184;
                   Label11: while (true) {
                   if (!(i_587202907 < L_587202908)) break Label11;
-                    F.line = 120;
+                    F.line = 123;
                     F.filename = "shell.nim";
-                    i_1325400645 = i_587202907;
-                    F.line = 120;
-                    part_1325400646 = pathSplit_1325400604[chckIndx(i_587202907, 0, (pathSplit_1325400604).length - 1)];
+                    i_1325400652 = i_587202907;
+                    F.line = 123;
+                    part_1325400653 = pathSplit_1325400611[chckIndx(i_587202907, 0, (pathSplit_1325400611).length - 1)];
                     Label12: {
-                      if (((part_1325400646).length == 0)) {
-                      F.line = 121;
+                      if (((part_1325400653).length == 0)) {
+                      F.line = 124;
                       break Label12;
                       }
                       
-                      F.line = 123;
-                      var isLast_1325400650 = (i_1325400645 == (pathSplit_1325400604).length - 1);
-                      F.line = 124;
-                      var existing_1325400651 = null;
+                      F.line = 126;
+                      var isLast_1325400657 = (i_1325400652 == (pathSplit_1325400611).length - 1);
+                      F.line = 127;
+                      var existing_1325400658 = null;
                       Label13: {
-                        F.line = 125;
-                        var child_1325400655 = null;
+                        F.line = 128;
+                        var child_1325400662 = null;
                         F.line = 249;
                         F.filename = "iterators.nim";
                         var i_587202903 = 0;
                         F.line = 250;
-                        var L_587202904 = (ctx_1325400603.children).length;
+                        var L_587202904 = (ctx_1325400610.children).length;
                         Label14: {
                           F.line = 251;
                             Label15: while (true) {
                             if (!(i_587202903 < L_587202904)) break Label15;
-                              F.line = 125;
-                              F.filename = "shell.nim";
-                              child_1325400655 = ctx_1325400603.children[chckIndx(i_587202903, 0, (ctx_1325400603.children).length - 1)];
-                              if (eqStrings(child_1325400655.name, part_1325400646)) {
-                              F.line = 127;
-                              existing_1325400651 = child_1325400655;
                               F.line = 128;
+                              F.filename = "shell.nim";
+                              child_1325400662 = ctx_1325400610.children[chckIndx(i_587202903, 0, (ctx_1325400610.children).length - 1)];
+                              if (eqStrings(child_1325400662.name, part_1325400653)) {
+                              F.line = 130;
+                              existing_1325400658 = child_1325400662;
+                              F.line = 131;
                               break Label13;
                               }
                               
                               F.line = 13;
                               F.filename = "iterators.nim";
                               i_587202903 += 1;
-                              if (!(((ctx_1325400603.children).length == L_587202904))) {
+                              if (!(((ctx_1325400610.children).length == L_587202904))) {
                               F.line = 254;
                               failedAssertImpl__stdZassertions_u86(makeNimstrLit("E:\\langs\\nim\\nim-2.2.10\\lib\\system\\iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                               }
@@ -4420,43 +4420,43 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
                             }
                         };
                       };
-                      if ((existing_1325400651 == null)) {
-                      if ((!(isLast_1325400650) && !(parsed_1325400591.createParents))) {
-                      F.line = 132;
-                      F.filename = "shell.nim";
-                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400602,[39,58,32,78,111,32,115,117,99,104,32,102,105,108,101,32,111,114,32,100,105,114,101,99,116,111,114,121]));
-                      F.line = 133;
-                      break Label9;
-                      }
-                      
+                      if ((existing_1325400658 == null)) {
+                      if ((!(isLast_1325400657) && !(parsed_1325400598.createParents))) {
                       F.line = 135;
-                      var newDir_1325400659 = {name: nimCopy(null, part_1325400646, NTI33554449), m_type: NTI1577058314, children: [], parent: null};
+                      F.filename = "shell.nim";
+                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400609,[39,58,32,78,111,32,115,117,99,104,32,102,105,108,101,32,111,114,32,100,105,114,101,99,116,111,114,121]));
                       F.line = 136;
-                      addChild__fs_u211(ctx_1325400603, newDir_1325400659);
-                      F.line = 137;
-                      ctx_1325400603 = newDir_1325400659;
-                      if (parsed_1325400591.verbose) {
-                      F.line = 140;
-                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,114,101,97,116,101,100,32,100,105,114,101,99,116,111,114,121,32,39]).concat(path__fs_u173(newDir_1325400659),[39]));
-                      }
-                      
-                      }
-                      else {
-                      if (isObj(existing_1325400651.m_type, NTI1577058314)) {
-                      if ((isLast_1325400650 && !(parsed_1325400591.createParents))) {
-                      F.line = 144;
-                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400602,[39,58,32,70,105,108,101,32,101,120,105,115,116,115]));
-                      F.line = 145;
                       break Label9;
                       }
                       
-                      F.line = 146;
-                      ctx_1325400603 = existing_1325400651;
+                      F.line = 138;
+                      var newDir_1325400666 = {name: nimCopy(null, part_1325400653, NTI33554449), m_type: NTI1577058314, children: [], parent: null};
+                      F.line = 139;
+                      addChild__fs_u211(ctx_1325400610, newDir_1325400666);
+                      F.line = 140;
+                      ctx_1325400610 = newDir_1325400666;
+                      if (parsed_1325400598.verbose) {
+                      F.line = 143;
+                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,114,101,97,116,101,100,32,100,105,114,101,99,116,111,114,121,32,39]).concat(path__fs_u173(newDir_1325400666),[39]));
+                      }
+                      
                       }
                       else {
-                        F.line = 149;
-                        secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400602,[39,58,32,78,111,116,32,97,32,100,105,114,101,99,116,111,114,121]));
-                        F.line = 150;
+                      if (isObj(existing_1325400658.m_type, NTI1577058314)) {
+                      if ((isLast_1325400657 && !(parsed_1325400598.createParents))) {
+                      F.line = 147;
+                      secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400609,[39,58,32,70,105,108,101,32,101,120,105,115,116,115]));
+                      F.line = 148;
+                      break Label9;
+                      }
+                      
+                      F.line = 149;
+                      ctx_1325400610 = existing_1325400658;
+                      }
+                      else {
+                        F.line = 152;
+                        secho__shell_u132(s_p0, ([109,107,100,105,114,58,32,99,97,110,110,111,116,32,99,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121,32,39]).concat(dir_1325400609,[39,58,32,78,111,116,32,97,32,100,105,114,101,99,116,111,114,121]));
+                        F.line = 153;
                         break Label9;
                       }
                       }
@@ -4464,7 +4464,7 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
                     F.line = 13;
                     F.filename = "iterators.nim";
                     i_587202907 += 1;
-                    if (!(((pathSplit_1325400604).length == L_587202908))) {
+                    if (!(((pathSplit_1325400611).length == L_587202908))) {
                     F.line = 187;
                     failedAssertImpl__stdZassertions_u86(makeNimstrLit("E:\\langs\\nim\\nim-2.2.10\\lib\\system\\iterators.nim(187, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                     }
@@ -4474,7 +4474,7 @@ function mkdirShell__shell_u520(s_p0, args_p1) {
             };
             F.line = 13;
             i_587202911 += 1;
-            if (!(((parsed_1325400591.dirs).length == L_587202912))) {
+            if (!(((parsed_1325400598.dirs).length == L_587202912))) {
             F.line = 254;
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("E:\\langs\\nim\\nim-2.2.10\\lib\\system\\iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -4825,13 +4825,13 @@ function resolvePath__fs_u187(fs_p0, path_p1) {
 
 }
 
-function cdShell__shell_u501(s_p0, args_p1) {
+function cdShell__shell_u508(s_p0, args_p1) {
     var Temporary1;
 
   var F = {procname: "shell.cdShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
   BeforeRet: {
-    F.line = 84;
+    F.line = 87;
     F.filename = "shell.nim";
     if (((0 < (args_p1).length) && eqStrings(args_p1[chckIndx(0, 0, (args_p1).length - 1)], [99,100]))) {
     Temporary1 = 1;
@@ -4840,25 +4840,25 @@ function cdShell__shell_u501(s_p0, args_p1) {
     Temporary1 = 0;
     }
     
-    var pathIdx_1325400575 = Temporary1;
-    if (((args_p1).length <= pathIdx_1325400575)) {
-    F.line = 85;
+    var pathIdx_1325400582 = Temporary1;
+    if (((args_p1).length <= pathIdx_1325400582)) {
+    F.line = 88;
     break BeforeRet;
     }
     
-    F.line = 86;
-    var path_1325400579 = nimCopy(null, args_p1[chckIndx(pathIdx_1325400575, 0, (args_p1).length - 1)], NTI33554449);
-    F.line = 87;
-    var existing_1325400580 = resolvePath__fs_u187(s_p0.fs, path_1325400579);
-    if ((existing_1325400580 == null)) {
     F.line = 89;
-    secho__shell_u132(s_p0, ([67,97,110,110,111,116,32,102,105,110,100,32,112,97,116,104,32,96]).concat(args_p1[chckIndx(0, 0, (args_p1).length - 1)],[96,32,98,101,99,97,117,115,101,32,105,116,32,100,111,101,115,32,110,111,116,32,101,120,105,115,116,46]));
+    var path_1325400586 = nimCopy(null, args_p1[chckIndx(pathIdx_1325400582, 0, (args_p1).length - 1)], NTI33554449);
     F.line = 90;
+    var existing_1325400587 = resolvePath__fs_u187(s_p0.fs, path_1325400586);
+    if ((existing_1325400587 == null)) {
+    F.line = 92;
+    secho__shell_u132(s_p0, ([67,97,110,110,111,116,32,102,105,110,100,32,112,97,116,104,32,96]).concat(args_p1[chckIndx(0, 0, (args_p1).length - 1)],[96,32,98,101,99,97,117,115,101,32,105,116,32,100,111,101,115,32,110,111,116,32,101,120,105,115,116,46]));
+    F.line = 93;
     break BeforeRet;
     }
     
-    F.line = 91;
-    s_p0.fs.cwd = existing_1325400580;
+    F.line = 94;
+    s_p0.fs.cwd = existing_1325400587;
   };
   framePtr = F.prev;
 
@@ -4927,43 +4927,43 @@ function cwdNode__shell_u52(s_p0) {
 
 }
 
-function lsShell__shell_u467(s_p0, args_p1) {
+function lsShell__shell_u474(s_p0, args_p1) {
   var F = {procname: "shell.lsShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
   BeforeRet: {
-    F.line = 74;
-    F.filename = "shell.nim";
-    var children_1325400538 = listChildren__fs_u86(cwdNode__shell_u52(s_p0));
-    if (((children_1325400538).length == 0)) {
-    F.line = 76;
-    secho__shell_u132(s_p0, [83,101,101,109,115,32,101,109,112,116,121,46,46,46]);
     F.line = 77;
+    F.filename = "shell.nim";
+    var children_1325400545 = listChildren__fs_u86(cwdNode__shell_u52(s_p0));
+    if (((children_1325400545).length == 0)) {
+    F.line = 79;
+    secho__shell_u132(s_p0, [83,101,101,109,115,32,101,109,112,116,121,46,46,46]);
+    F.line = 80;
     break BeforeRet;
     }
     
-    F.line = 78;
-    var final_1325400542 = [];
+    F.line = 81;
+    var final_1325400549 = [];
     Label1: {
-      F.line = 79;
-      var c_1325400564 = [];
+      F.line = 82;
+      var c_1325400571 = [];
       F.line = 249;
       F.filename = "iterators.nim";
       var i_587203061 = 0;
       F.line = 250;
-      var L_587203062 = (children_1325400538).length;
+      var L_587203062 = (children_1325400545).length;
       Label2: {
         F.line = 251;
           Label3: while (true) {
           if (!(i_587203061 < L_587203062)) break Label3;
-            F.line = 79;
+            F.line = 82;
             F.filename = "shell.nim";
-            c_1325400564 = children_1325400538[chckIndx(i_587203061, 0, (children_1325400538).length - 1)];
-            F.line = 80;
-            nimAddStrStr(final_1325400542, ([10]).concat(c_1325400564));;
+            c_1325400571 = children_1325400545[chckIndx(i_587203061, 0, (children_1325400545).length - 1)];
+            F.line = 83;
+            nimAddStrStr(final_1325400549, ([10]).concat(c_1325400571));;
             F.line = 13;
             F.filename = "iterators.nim";
             i_587203061 += 1;
-            if (!(((children_1325400538).length == L_587203062))) {
+            if (!(((children_1325400545).length == L_587203062))) {
             F.line = 254;
             failedAssertImpl__stdZassertions_u86(makeNimstrLit("E:\\langs\\nim\\nim-2.2.10\\lib\\system\\iterators.nim(254, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -4971,21 +4971,32 @@ function lsShell__shell_u467(s_p0, args_p1) {
           }
       };
     };
-    F.line = 81;
+    F.line = 84;
     F.filename = "shell.nim";
-    secho__shell_u132(s_p0, final_1325400542);
+    secho__shell_u132(s_p0, final_1325400549);
   };
   framePtr = F.prev;
 
   
 }
 
-function clrShell__shell_u424(s_p0, args_p1) {
+function cwdShell__shell_u147(s_p0, args_p1) {
+  var F = {procname: "shell.cwdShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
+  framePtr = F;
+    F.line = 67;
+    F.filename = "shell.nim";
+    secho__shell_u132(s_p0, cwd__shell_u49(s_p0));
+  framePtr = F.prev;
+
+  
+}
+
+function clrShell__shell_u431(s_p0, args_p1) {
   var F = {procname: "shell.clrShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
-    F.line = 71;
+    F.line = 74;
     F.filename = "shell.nim";
-    s_p0.outputBuffer = nimCopy(null, [], NTI1325400345);
+    s_p0.outputBuffer = nimCopy(null, [], NTI1325400355);
   framePtr = F.prev;
 
   
@@ -5173,28 +5184,28 @@ function HEX5BHEX5DHEX3D__jsZjsffi_u651(t_p0, key_p1, val_p2) {
   
 }
 
-function registerShellAlias__shell_u1964(s_p0, alias_p1, cmd_p2) {
+function registerShellAlias__shell_u1971(s_p0, alias_p1, cmd_p2) {
   var F = {procname: "shell.registerShellAlias", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
   BeforeRet: {
-    if (hasKey__shell_u679(s_p0.cmds, alias_p1)) {
-    F.line = 164;
+    if (hasKey__shell_u686(s_p0.cmds, alias_p1)) {
+    F.line = 167;
     F.filename = "shell.nim";
     rawEcho(([67,111,109,109,97,110,100,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p2,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
-    F.line = 165;
-    break BeforeRet;
-    }
-    
-    if (hasKey__jsZjsffi_u380(s_p0.aliases, alias_p1)) {
-    F.line = 167;
-    rawEcho(([65,108,105,97,115,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p2,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
     F.line = 168;
     break BeforeRet;
     }
     
-    F.line = 169;
-    HEX5BHEX5DHEX3D__jsZjsffi_u651(s_p0.aliases, alias_p1, cmd_p2);
+    if (hasKey__jsZjsffi_u380(s_p0.aliases, alias_p1)) {
     F.line = 170;
+    rawEcho(([65,108,105,97,115,32,119,105,116,104,32,110,97,109,101,32]).concat(cmd_p2,[32,97,108,114,101,97,100,121,32,101,120,105,115,116,115,46,32,67,97,110,110,111,116,32,114,101,45,114,101,103,105,115,116,101,114,33]));
+    F.line = 171;
+    break BeforeRet;
+    }
+    
+    F.line = 172;
+    HEX5BHEX5DHEX3D__jsZjsffi_u651(s_p0.aliases, alias_p1, cmd_p2);
+    F.line = 173;
     rawEcho(([82,101,103,105,115,116,101,114,101,100,32,97,108,105,97,115,58,32,96]).concat(alias_p1,[96,32,116,111,32,99,111,109,109,97,110,100,58,32,96],cmd_p2,[96]));
   };
   framePtr = F.prev;
@@ -5202,30 +5213,30 @@ function registerShellAlias__shell_u1964(s_p0, alias_p1, cmd_p2) {
   
 }
 
-function len__shell_u198(t_p0) {
-  var result_1325400266 = 0;
+function len__shell_u205(t_p0) {
+  var result_1325400273 = 0;
 
   var F = {procname: "len.len", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim", line: 0};
   framePtr = F;
     F.line = 495;
     F.filename = "tables.nim";
-    result_1325400266 = t_p0.counter;
+    result_1325400273 = t_p0.counter;
   framePtr = F.prev;
 
-  return result_1325400266;
+  return result_1325400273;
 
 }
 
-function helpShell__shell_u147(s_p0, args_p1) {
+function helpShell__shell_u154(s_p0, args_p1) {
   var F = {procname: "shell.helpShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
     Label1: {
-      F.line = 67;
+      F.line = 70;
       F.filename = "shell.nim";
-      var c_1325400454 = ({name: [], toCall: null, desc: []});
+      var c_1325400461 = ({name: [], toCall: null, desc: []});
       F.line = 831;
       F.filename = "tables.nim";
-      var L_587203080 = len__shell_u198(s_p0.cmds);
+      var L_587203080 = len__shell_u205(s_p0.cmds);
       Label2: {
         F.line = 832;
         var h_587203082 = 0;
@@ -5246,12 +5257,12 @@ function helpShell__shell_u147(s_p0, args_p1) {
               F.filename = "tables.nim";
               h_587203082 = res_587203084;
               if (isFilled__pureZcollectionsZtables_u31(s_p0.cmds.data[chckIndx(h_587203082, 0, (s_p0.cmds.data).length - 1)].Field0)) {
-              F.line = 67;
+              F.line = 70;
               F.filename = "shell.nim";
-              c_1325400454 = s_p0.cmds.data[chckIndx(h_587203082, 0, (s_p0.cmds.data).length - 1)].Field2;
-              F.line = 68;
-              secho__shell_u132(s_p0, (c_1325400454.name).concat([32,45,62,32],c_1325400454.desc));
-              if (!((len__shell_u198(s_p0.cmds) == L_587203080))) {
+              c_1325400461 = s_p0.cmds.data[chckIndx(h_587203082, 0, (s_p0.cmds.data).length - 1)].Field2;
+              F.line = 71;
+              secho__shell_u132(s_p0, (c_1325400461.name).concat([32,45,62,32],c_1325400461.desc));
+              if (!((len__shell_u205(s_p0.cmds) == L_587203080))) {
               F.line = 835;
               F.filename = "tables.nim";
               failedAssertImpl__stdZassertions_u86(makeNimstrLit("E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim(835, 13) `len(t) == L` the length of the table changed while iterating over it"));
@@ -5271,46 +5282,50 @@ function helpShell__shell_u147(s_p0, args_p1) {
   
 }
 
-function newShell__shell_u2388(user_p0) {
+function newShell__shell_u2395(user_p0) {
     var Temporary1;
     var Temporary2;
     var Temporary3;
     var Temporary4;
     var Temporary5;
     var Temporary6;
+    var Temporary7;
 
-  var result_1325402454 = null;
+  var result_1325402461 = null;
 
   var F = {procname: "shell.newShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
-    F.line = 185;
-    F.filename = "shell.nim";
-    var root_1325402455 = {name: [47], m_type: NTI1577058314, children: [], parent: null};
-    F.line = 186;
-    result_1325402454 = {user: nimCopy(null, user_p0, NTI33554449), fs: {root: root_1325402455, cwd: root_1325402455}, outputBuffer: [], prevCmdsBuffer: [], cmds: ({data: [], counter: 0}), aliases: ({data: [], counter: 0})};
-    F.line = 187;
-    Temporary1 = mkdirShell__shell_u520.bind(null); Temporary1.ClP_0 = mkdirShell__shell_u520; Temporary1.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [109,107,100,105,114], Temporary1, [67,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121]);
     F.line = 188;
-    Temporary2 = echoShell__shell_u55.bind(null); Temporary2.ClP_0 = echoShell__shell_u55; Temporary2.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [101,99,104,111], Temporary2, [80,114,105,110,116,32,116,101,120,116]);
+    F.filename = "shell.nim";
+    var root_1325402462 = {name: [47], m_type: NTI1577058314, children: [], parent: null};
     F.line = 189;
-    Temporary3 = cdShell__shell_u501.bind(null); Temporary3.ClP_0 = cdShell__shell_u501; Temporary3.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [99,100], Temporary3, [67,104,97,110,103,101,32,100,105,114,101,99,116,111,114,121]);
+    result_1325402461 = {user: nimCopy(null, user_p0, NTI33554449), fs: {root: root_1325402462, cwd: root_1325402462}, outputBuffer: [], prevCmdsBuffer: [], cmds: ({data: [], counter: 0}), aliases: ({data: [], counter: 0})};
     F.line = 190;
-    Temporary4 = lsShell__shell_u467.bind(null); Temporary4.ClP_0 = lsShell__shell_u467; Temporary4.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [108,115], Temporary4, [76,105,115,116,32,102,105,108,101,115,47,100,105,114,101,99,116,111,114,105,101,115]);
+    Temporary1 = mkdirShell__shell_u527.bind(null); Temporary1.ClP_0 = mkdirShell__shell_u527; Temporary1.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [109,107,100,105,114], Temporary1, [67,114,101,97,116,101,32,100,105,114,101,99,116,111,114,121]);
     F.line = 191;
-    Temporary5 = clrShell__shell_u424.bind(null); Temporary5.ClP_0 = clrShell__shell_u424; Temporary5.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [99,108,114], Temporary5, [67,108,101,97,114,32,116,101,114,109,105,110,97,108]);
+    Temporary2 = echoShell__shell_u55.bind(null); Temporary2.ClP_0 = echoShell__shell_u55; Temporary2.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [101,99,104,111], Temporary2, [80,114,105,110,116,32,116,101,120,116]);
     F.line = 192;
-    registerShellAlias__shell_u1964(result_1325402454, [99,108,101,97,114], [99,108,114]);
+    Temporary3 = cdShell__shell_u508.bind(null); Temporary3.ClP_0 = cdShell__shell_u508; Temporary3.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [99,100], Temporary3, [67,104,97,110,103,101,32,100,105,114,101,99,116,111,114,121]);
     F.line = 193;
-    Temporary6 = helpShell__shell_u147.bind(null); Temporary6.ClP_0 = helpShell__shell_u147; Temporary6.ClE_0 = null;
-    registerShellCommand__shell_u638(result_1325402454, [104,101,108,112], Temporary6, [83,104,111,119,115,32,116,104,105,115,32,104,101,108,112]);
+    Temporary4 = lsShell__shell_u474.bind(null); Temporary4.ClP_0 = lsShell__shell_u474; Temporary4.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [108,115], Temporary4, [76,105,115,116,32,102,105,108,101,115,47,100,105,114,101,99,116,111,114,105,101,115]);
+    F.line = 194;
+    Temporary5 = cwdShell__shell_u147.bind(null); Temporary5.ClP_0 = cwdShell__shell_u147; Temporary5.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [112,119,100], Temporary5, [80,114,105,110,116,32,119,111,114,107,105,110,103,32,100,105,114,101,99,116,111,114,121]);
+    F.line = 195;
+    Temporary6 = clrShell__shell_u431.bind(null); Temporary6.ClP_0 = clrShell__shell_u431; Temporary6.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [99,108,114], Temporary6, [67,108,101,97,114,32,116,101,114,109,105,110,97,108]);
+    F.line = 196;
+    registerShellAlias__shell_u1971(result_1325402461, [99,108,101,97,114], [99,108,114]);
+    F.line = 197;
+    Temporary7 = helpShell__shell_u154.bind(null); Temporary7.ClP_0 = helpShell__shell_u154; Temporary7.ClE_0 = null;
+    registerShellCommand__shell_u645(result_1325402461, [104,101,108,112], Temporary7, [83,104,111,119,115,32,116,104,105,115,32,104,101,108,112]);
   framePtr = F.prev;
 
-  return result_1325402454;
+  return result_1325402461;
 
 }
 
@@ -6079,19 +6094,19 @@ function HEX5BHEX5D__jsZjsffi_u1661(t_p0, key_p1) {
 
 }
 
-function HEX5BHEX5D__shell_u2304(t_p0, key_p1) {
-  var result_1325402373 = null;
+function HEX5BHEX5D__shell_u2311(t_p0, key_p1) {
+  var result_1325402380 = null;
 
   var F = {procname: "[].[]", prev: framePtr, filename: "E:\\langs\\nim\\nim-2.2.10\\lib\\pure\\collections\\tables.nim", line: 0};
   framePtr = F;
     F.line = 240;
     F.filename = "tables.nim";
-    var hcHEX60gensym22_1325402374 = [0];
+    var hcHEX60gensym22_1325402381 = [0];
     F.line = 241;
-    var indexHEX60gensym22_1325402381 = rawGet__shell_u686(t_p0, key_p1, hcHEX60gensym22_1325402374, 0);
-    if ((0 <= indexHEX60gensym22_1325402381)) {
+    var indexHEX60gensym22_1325402388 = rawGet__shell_u693(t_p0, key_p1, hcHEX60gensym22_1325402381, 0);
+    if ((0 <= indexHEX60gensym22_1325402388)) {
     F.line = 242;
-    result_1325402373 = t_p0.data[chckIndx(indexHEX60gensym22_1325402381, 0, (t_p0.data).length - 1)].Field2;
+    result_1325402380 = t_p0.data[chckIndx(indexHEX60gensym22_1325402388, 0, (t_p0.data).length - 1)].Field2;
     }
     else {
       F.line = 244;
@@ -6100,39 +6115,39 @@ function HEX5BHEX5D__shell_u2304(t_p0, key_p1) {
     
   framePtr = F.prev;
 
-  return result_1325402373;
+  return result_1325402380;
 
 }
 
-function dispatchCommandShell__shell_u2092(s_p0, cmd_p1) {
+function dispatchCommandShell__shell_u2099(s_p0, cmd_p1) {
     var Temporary1;
 
   var F = {procname: "shell.dispatchCommandShell", prev: framePtr, filename: "E:\\Projects\\MYWEBSITES\\robert\\src\\shell.nim", line: 0};
   framePtr = F;
   BeforeRet: {
-    F.line = 173;
+    F.line = 176;
     F.filename = "shell.nim";
-    var args_1325402159 = nosparseCmdLine(cmd_p1);
-    F.line = 174;
-    s_p0.outputBuffer.push({kind: 0, text: nsuJoinSep(args_1325402159, [32]), pwd: cwd__shell_u49(s_p0)});;
-    F.line = 175;
-    s_p0.prevCmdsBuffer.push({kind: 0, text: nsuJoinSep(args_1325402159, [32]), pwd: cwd__shell_u49(s_p0)});;
-    if (!(hasKey__shell_u679(s_p0.cmds, args_1325402159[chckIndx(0, 0, (args_1325402159).length - 1)]))) {
-    if (hasKey__jsZjsffi_u380(s_p0.aliases, args_1325402159[chckIndx(0, 0, (args_1325402159).length - 1)])) {
+    var args_1325402166 = nosparseCmdLine(cmd_p1);
+    F.line = 177;
+    s_p0.outputBuffer.push({kind: 0, text: nsuJoinSep(args_1325402166, [32]), pwd: cwd__shell_u49(s_p0)});;
     F.line = 178;
-    dispatchCommandShell__shell_u2092(s_p0, ((Temporary1 = HEX5BHEX5D__jsZjsffi_u1661(s_p0.aliases, args_1325402159[chckIndx(0, 0, (args_1325402159).length - 1)]), Temporary1)[0][Temporary1[1]]).concat(nsuJoinSep(HEX5BHEX5D__shell_u71(args_1325402159, HEX2EHEX2E__stdZenumutils_u105(1, 1)), [32])));
-    F.line = 179;
-    break BeforeRet;
-    }
-    
-    F.line = 180;
-    secho__shell_u132(s_p0, ([84,104,101,32,99,111,109,109,97,110,100,32]).concat(args_1325402159[chckIndx(0, 0, (args_1325402159).length - 1)],[32,105,115,32,117,110,107,110,111,119,110,46,46,46]));
+    s_p0.prevCmdsBuffer.push({kind: 0, text: nsuJoinSep(args_1325402166, [32]), pwd: cwd__shell_u49(s_p0)});;
+    if (!(hasKey__shell_u686(s_p0.cmds, args_1325402166[chckIndx(0, 0, (args_1325402166).length - 1)]))) {
+    if (hasKey__jsZjsffi_u380(s_p0.aliases, args_1325402166[chckIndx(0, 0, (args_1325402166).length - 1)])) {
     F.line = 181;
+    dispatchCommandShell__shell_u2099(s_p0, ((Temporary1 = HEX5BHEX5D__jsZjsffi_u1661(s_p0.aliases, args_1325402166[chckIndx(0, 0, (args_1325402166).length - 1)]), Temporary1)[0][Temporary1[1]]).concat(nsuJoinSep(HEX5BHEX5D__shell_u71(args_1325402166, HEX2EHEX2E__stdZenumutils_u105(1, 1)), [32])));
+    F.line = 182;
     break BeforeRet;
     }
     
-    F.line = 182;
-    HEX5BHEX5D__shell_u2304(s_p0.cmds, args_1325402159[chckIndx(0, 0, (args_1325402159).length - 1)]).toCall(s_p0, args_1325402159);
+    F.line = 183;
+    secho__shell_u132(s_p0, ([84,104,101,32,99,111,109,109,97,110,100,32]).concat(args_1325402166[chckIndx(0, 0, (args_1325402166).length - 1)],[32,105,115,32,117,110,107,110,111,119,110,46,46,46]));
+    F.line = 184;
+    break BeforeRet;
+    }
+    
+    F.line = 185;
+    HEX5BHEX5D__shell_u2311(s_p0.cmds, args_1325402166[chckIndx(0, 0, (args_1325402166).length - 1)]).toCall(s_p0, args_1325402166);
   };
   framePtr = F.prev;
 
@@ -8472,7 +8487,7 @@ function HEX3Aanonymous__rob_u111(ev_p0, n_p1) {
     if (!(((curTyped_587202574[0]).length == 0))) {
     F.line = 52;
     F.filename = "rob.nim";
-    dispatchCommandShell__shell_u2092(this.s0, curTyped_587202574[0]);
+    dispatchCommandShell__shell_u2099(this.s0, curTyped_587202574[0]);
     F.line = 53;
     curTyped_587202574[0] = nimCopy(null, [], NTI33554449);
     }
@@ -8652,18 +8667,18 @@ var F = {procname: "module rob", prev: framePtr, filename: "E:\\Projects\\MYWEBS
 framePtr = F;
 F.line = 10;
 F.filename = "rob.nim";
-var rootShell_587202573 = [newShell__shell_u2388([114,111,98,101,114,116,64,114,101,110,111,100,101])];
+var rootShell_587202573 = [newShell__shell_u2395([114,111,98,101,114,116,64,114,101,110,111,100,101])];
 F.line = 13;
 var curTyped_587202574 = [[]];
 F.line = 14;
 var curCmdIndex_587202575 = [0];
 F.line = 30;
 Temporary1 = whoami__rob_u16.bind(null); Temporary1.ClP_0 = whoami__rob_u16; Temporary1.ClE_0 = null;
-registerShellCommand__shell_u638(rootShell_587202573[0], [119,104,111,97,109,105], Temporary1, [103]);
+registerShellCommand__shell_u645(rootShell_587202573[0], [119,104,111,97,109,105], Temporary1, [77,121,32,34,65,98,111,117,116,32,77,101,34]);
 F.line = 32;
-dispatchCommandShell__shell_u2092(rootShell_587202573[0], [119,104,111,97,109,105]);
+dispatchCommandShell__shell_u2099(rootShell_587202573[0], [119,104,111,97,109,105]);
 F.line = 33;
-dispatchCommandShell__shell_u2092(rootShell_587202573[0], [104,101,108,112]);
+dispatchCommandShell__shell_u2099(rootShell_587202573[0], [104,101,108,112]);
 Temporary2 = createDom__rob_u270.bind(null); Temporary2.ClP_0 = createDom__rob_u270; Temporary2.ClE_0 = null;
 setRenderer__pkgZkaraxZkarax_u1870(Temporary2, "ROOT", null);
 framePtr = F.prev;

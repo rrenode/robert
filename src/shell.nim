@@ -63,6 +63,9 @@ proc secho*(s: Shell, msg: string) =
 proc htmlEcho*(s: Shell, strHtml: string) =
   s.outputBuffer.add ShellOutput(kind:sokHtml, text:strHtml, pwd:s.cwd)
 
+proc cwdShell*(s: Shell, args: seq[string] = @[]) =
+  s.secho s.cwd
+
 proc helpShell(s: Shell, args:seq[string] = @[]) =
   for c in s.cmds.values:
     s.secho c.name & " -> " & c.desc
@@ -188,6 +191,7 @@ proc newShell*(user: string): Shell =
   result.registerShellCommand("echo", echoShell, "Print text")
   result.registerShellCommand("cd", cdShell, "Change directory")
   result.registerShellCommand("ls", lsShell, "List files/directories")
+  result.registerShellCommand("pwd", cwdShell, "Print working directory")
   result.registerShellCommand("clr", clrShell, "Clear terminal")
   result.registerShellAlias("clear", "clr")
   result.registerShellCommand("help", helpShell, "Shows this help")
