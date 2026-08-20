@@ -1,6 +1,6 @@
 include karax / prelude
 import karax/kdom except setInterval
-import karax/vstyles
+import karax/[vstyles, karaxdsl]
 from sugar import `=>`
 
 import std/[jsffi]
@@ -8,11 +8,30 @@ import std/[jsffi]
 import shell
 
 var rootShell: Shell = newShell("robert@renode")
-rootShell.dispatchCommandShell("help")
 
 var 
   curTyped = ""
   curCmdIndex: int = 0
+
+proc whoami(s: Shell, args: seq[string] = @[]) =
+  let node = buildHtml(tdiv):
+    h1:
+      text "Robert J Renode IV"
+    h2:
+      text "|-> Software Dev"
+    h2:
+      text "|-> Need something!"
+    h2:
+      text "|-> Math & Music Tutor"
+  var html = ""
+  html.add(node)
+  s.htmlEcho(html)
+
+rootShell.registerShellCommand("whoami", whoami, "g")
+
+rootShell.dispatchCommandShell("whoami")
+rootShell.dispatchCommandShell("help")
+
 
 proc createShellCursor(s: Shell): VNode =
   result = buildHtml(tdiv(class="command")):
@@ -67,6 +86,10 @@ proc renderInfo(s: Shell, d: ShellOutput): VNode =
   result = buildHtml(tdiv(class="command-output")):
     text d.text
 
+proc renderHtml(s: Shell, d: ShellOutput): VNode =
+  buildHtml(tdiv(class="command-output")):
+    verbatim d.text
+
 proc renderOutput(s: Shell): VNode =
   result = buildHtml(tdiv):
     for res in s.outputBuffer:
@@ -79,6 +102,8 @@ proc renderOutput(s: Shell): VNode =
         discard
       of sokInfo:
         renderInfo(s, res)
+      of sokHtml:
+        renderHtml(s, res)
 
 proc createDom: VNode =
   result = buildHtml(tdiv):
