@@ -20,7 +20,7 @@ import fs
 
 type
   ShellOutputKind* = enum
-    sokCommand, sokStdout, sokStderr, sokInfo
+    sokCommand, sokStdout, sokStderr, sokInfo, sokHtml
 
   ShellOutput* = object
     kind*: ShellOutputKind
@@ -53,12 +53,15 @@ proc cwd*(s: Shell): string =
 proc cwdNode(s: Shell): FsDir =
   s.fs.cwd
 
-proc echoShell(s: Shell, args: seq[string] = @[]) =
+proc echoShell*(s: Shell, args: seq[string] = @[]) =
   s.outputBuffer.add ShellOutput(kind:sokInfo, text:args[1..^1].join(" "), pwd:s.cwd)
 
 proc secho*(s: Shell, msg: string) =
   let cmd = msg.parseCmdLine()
   s.outputBuffer.add ShellOutput(kind:sokInfo, text:msg, pwd:s.cwd)
+
+proc htmlEcho*(s: Shell, strHtml: string) =
+  s.outputBuffer.add ShellOutput(kind:sokHtml, text:strHtml, pwd:s.cwd)
 
 proc helpShell(s: Shell, args:seq[string] = @[]) =
   for c in s.cmds.values:
