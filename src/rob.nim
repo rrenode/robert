@@ -27,7 +27,7 @@ proc whoami(s: Shell, args: seq[string] = @[]) =
   html.add(node)
   s.htmlEcho(html)
 
-rootShell.registerShellCommand("whoami", whoami, "g")
+rootShell.registerShellCommand("whoami", whoami, "My \"About Me\"")
 
 rootShell.dispatchCommandShell("whoami")
 rootShell.dispatchCommandShell("help")
